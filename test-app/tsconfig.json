@@ -3,6 +3,7 @@
     "target": "ES2021",
     "module": "ES2020",
     "moduleResolution": "node",
+    "resolveJsonModule": true,
     "skipLibCheck": true,
 
     // Trying to check Ember apps and addons with `allowJs: true` is a recipe
@@ -28,7 +29,7 @@
     // consumers; but leaving them off is still preferred when possible, since
     // it makes it easier to switch between apps and addons and have the same
     // rules for what can be imported and how.
-    "allowSyntheticDefaultImports": false,
+    "allowSyntheticDefaultImports": true,
     "esModuleInterop": false,
 
     // --- Lint-style rules

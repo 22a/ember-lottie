@@ -8,9 +8,12 @@ import window from 'ember-window-mock';
 import { setupWindowMock } from 'ember-window-mock/test-support';
 import * as sinon from 'sinon';
 
+import ExampleLottieJSONData from '../../../public/data.json';
+
 interface TestContext extends TestContextBase {
   onDataReady: () => void;
   fetchOptions: RequestInit;
+  animationData?: any;
 }
 
 const NOOP = (): void => {};
@@ -42,6 +45,16 @@ module('Integration | Component | lottie', function (hooks) {
 
     find('svg');
     assert.verifySteps(['data ready called']);
+  });
+
+  test('it render without errors when using the @animationData arg', async function (this: TestContext, assert) {
+    this.animationData = ExampleLottieJSONData;
+    await render(hbs`
+      <Lottie
+        @animationData={{this.animationData}}
+      />
+    `);
+    find('svg');
   });
 
   test('it calls window.matchMedia to check for prefers-reduced-motion', async function (this: TestContext, assert) {
